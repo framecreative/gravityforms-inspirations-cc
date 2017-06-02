@@ -3,9 +3,12 @@
 Plugin Name: Gravity Forms Inspirations CC Processing
 Plugin URI: http://www.gravityforms.com
 Description: A plugin to change how the credit card processing / storing works on the Inspirations Studios site
-Version: 2.1
+Version: 1.0
 Author: F / R / A / M / E Creative
 Author URI: https://framecreative.com.au
+
+Bitbucket Plugin URI: https://bitbucket.org/framecreative/gravity-forms-inspirations-cc
+Bitbucket Branch: master
 
 ------------------------------------------------------------------------
 Copyright 2012-2016 Rocketgenius Inc.
