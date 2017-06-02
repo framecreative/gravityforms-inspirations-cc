@@ -8,6 +8,7 @@ Author: F / R / A / M / E Creative
 Author URI: https://framecreative.com.au
 
 Bitbucket Plugin URI: https://bitbucket.org/framecreative/gravity-forms-inspirations-cc
+
 Bitbucket Branch: master
 
 ------------------------------------------------------------------------
