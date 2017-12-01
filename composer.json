@@ -1,0 +1,7 @@
+{
+    "name": "framecreative/gravityforms-inspirations-cc",
+    "type": "wordpress-plugin",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
