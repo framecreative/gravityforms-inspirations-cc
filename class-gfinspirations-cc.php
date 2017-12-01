@@ -160,7 +160,7 @@ class GFInspirationsCc extends GFAddOn {
 
 		// We save them to this object so they are available for the rest of this request
 
-		$this->_inMemoryCreditCard = rgpost( $credit_card_field_name );
+		$this->_inMemoryCreditCard = substr( rgpost( $credit_card_field_name ), 0, -4 ) . '-XXXX';
 
 		$this->_inMemoryCcv = rgpost( $ccv_field_name );
 
@@ -186,7 +186,13 @@ class GFInspirationsCc extends GFAddOn {
 			return $notification;
 		}
 
-		$notification['message'] .= 'Credit Card number: ' . $this->_inMemoryCreditCard . ' | CCV: ' . $this->_inMemoryCcv;
+        $settings = $form['inspirations-cc'];
+
+        $cc_field_id = $settings['mappedFields_submittedCc'];
+
+        $entry[ $cc_field_id ] = $this->_inMemoryCreditCard ?: 'NOT SET';
+
+		$notification['message'] .= 'CCV: ' . $this->_inMemoryCcv;
 
 		return $notification;
 
