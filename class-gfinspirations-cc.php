@@ -164,11 +164,11 @@ class GFInspirationsCc extends GFAddOn {
 
 		$this->_inMemoryCcv = rgpost( $ccv_field_name );
 
-		//$credit_card_partial = $this->_dummyCreditCardNumber . substr($this->_inMemoryCreditCard,-4,4); //the partial cc number
-
-		//$_POST[ $hidden_credit_card_field_name ] = $credit_card_partial; //post the partial number back to the form field
+		$credit_card_partial = $this->_dummyCreditCardNumber . substr( rgpost( $credit_card_field_name ),-4,4); //the partial cc number
+		$_POST[ $hidden_credit_card_field_name ] = $credit_card_partial; //post the partial number back to the form field
 		$_POST[ $hidden_customer_field_name ] = rgpost( $credit_card_customer_name );
 		$_POST[ $hidden_expiry_field_name ] = implode( '/', rgpost( $expiry_date_field_name ) );
+		$_POST[ $credit_card_field_name ] = 'XXXX-XXXXX-XXXX-XXXX';
 
 		// The Notification ID is needed later by the notification filter
 		$this->_notificationToTarget = $settings['notificationToAttach'];
@@ -186,13 +186,7 @@ class GFInspirationsCc extends GFAddOn {
 			return $notification;
 		}
 
-        $settings = $form['inspirations-cc'];
-
-        $cc_field_id = $settings['mappedFields_submittedCc'];
-
-        $entry[ $cc_field_id ] = $this->_inMemoryCreditCard ?: 'NOT SET';
-
-		$notification['message'] .= 'CCV: ' . $this->_inMemoryCcv;
+		$notification['message'] .= 'CC: ' . $this->_inMemoryCreditCard .  ' | CCV: ' . $this->_inMemoryCcv;
 
 		return $notification;
 
