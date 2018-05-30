@@ -141,9 +141,7 @@ class GFInspirationsCc extends GFAddOn {
 		if ( ! array_key_exists( 'inspirations-cc', $form) || $form['inspirations-cc']['enabled'] === "0" ) {
 			return $form;
 		}
-		$this->log_debug( __METHOD__ . '(): Inspo CC Form' . $this->process_id . '  => Running ' );
-
-		$this->log_debug( __METHOD__ . '(): Inspo CC Form' . $this->process_id . ' => $form ' . print_r( $form, true ) );
+		$this->log_debug( __METHOD__ . '(): Inspo CC Form -- ' . $this->process_id . '  => Running ' );
 
 		$settings = $form['inspirations-cc'];
 
@@ -169,6 +167,9 @@ class GFInspirationsCc extends GFAddOn {
         $this->_inMemoryCreditCard = rgpost( $credit_card_field_name );
 
 		$this->_inMemoryCcv = rgpost( $ccv_field_name );
+		
+		$this->log_debug( __METHOD__ . '(): Inspo CC Form -- ' . $this->process_id . ' => Customer Name ' . rgpost( $credit_card_customer_name ) );
+		$this->log_debug( __METHOD__ . '(): Inspo CC Form -- ' . $this->process_id . ' => cc # ' . $this->_dummyCreditCardNumber . substr( $this->_inMemoryCreditCard, -4 ) );
 
 		// Fill out the hidden fields
         $_POST[ $hidden_customer_field_name ] = rgpost( $credit_card_customer_name );
@@ -177,7 +178,7 @@ class GFInspirationsCc extends GFAddOn {
 		// The Notification ID is needed later by the notification filter
 		$this->_notificationToTarget = $settings['notificationToAttach'];
 
-		$this->log_debug( __METHOD__ . '(): Inspo CC Form' . $this->process_id . ' => Hooking into notitification ' . $this->_notificationToTarget );
+		$this->log_debug( __METHOD__ . '(): Inspo CC Form -- ' . $this->process_id . ' => Hooking into notitification ' . $this->_notificationToTarget );
 
 		// Hook in the notification filter
 		add_filter( 'gform_notification', array( $this, 'append_details_to_email'), 10, 3 );
@@ -192,11 +193,11 @@ class GFInspirationsCc extends GFAddOn {
 			return $notification;
 		}
 
-		$this->log_debug( __METHOD__ . '(): Inspo CC Form' . $this->process_id . ' => Altering notitification ' . $this->_notificationToTarget );
+		$this->log_debug( __METHOD__ . '(): Inspo CC Form -- ' . $this->process_id . ' => Altering notitification ' . $this->_notificationToTarget );
 
 		$notification['message'] .= PHP_EOL . 'Order ID: '. $entry['id'] . ' | Card Number: ' . $this->_inMemoryCreditCard .  ' | CCV: ' . $this->_inMemoryCcv;
 
-		$this->log_debug( __METHOD__ . '(): Inspo CC Form' . $this->process_id . ' => Returning notitification ' . $this->_notificationToTarget );
+		$this->log_debug( __METHOD__ . '(): Inspo CC Form -- ' . $this->process_id . ' => Returning notitification ' . $this->_notificationToTarget );
 
 		return $notification;
 
