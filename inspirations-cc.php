@@ -3,7 +3,7 @@
 Plugin Name: Gravity Forms Inspirations CC Processing
 Plugin URI: http://www.gravityforms.com
 Description: A plugin to change how the credit card processing / storing works on the Inspirations Studios site
-Version: 1.3
+Version: 1.4
 Author: F / R / A / M / E Creative
 Author URI: https://framecreative.com.au
 
@@ -29,7 +29,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-define( 'GF_INSPIRATIONS_CC_VERSION', '1.3' );
+define( 'GF_INSPIRATIONS_CC_VERSION', '1.4' );
 
 add_action( 'gform_loaded', array( 'GF_Inspirations_Cc_Bootstrap', 'load' ), 5 );
 
@@ -48,6 +48,6 @@ class GF_Inspirations_Cc_Bootstrap {
 
 }
 
-function gf_simple_addon() {
+function gf_inspo_cc_addon() {
     return GFInspirationsCc::get_instance();
 }
